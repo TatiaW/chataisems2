@@ -3,16 +3,16 @@
 }
 /*footer*/
 footer {
-    background-color: #343a40; /* Dark background */
-    color: white; /* White text */
-    padding: 2rem 0; /* Vertical padding */
+    background-color: #343a40; 
+    color: white; 
+    padding: 2rem 0; 
   }
   footer a {
-    color: white; /* White links */
-    text-decoration: none; /* Remove underline */
+    color: white; 
+    text-decoration: none; 
   }
   footer a:hover {
-    color: #ffc107; /* Yellow on hover */
+    color: #ffc107; 
   }
 
   /*style login btn*/
@@ -21,47 +21,47 @@ footer {
     padding: 10px 15px;
     font-weight: bold;
     color: #fff;
-    background-color: orange; /* Warna latar belakang */
+    background-color: orange; 
     border: none;
-    border-radius: 20px; /* Sudut membulat */
+    border-radius: 20px; 
     text-decoration: none;
-    transition: background-color 0.3s; /* Transisi warna */
+    transition: background-color 0.3s; 
 }
 
 .btn:hover {
-    background-color: orange; /* Warna saat hover */
+    background-color: orange; 
 }
 
 .btn i {
-    margin-left: 5px; /* Jarak antara teks dan ikon */
+    margin-left: 5px; 
 }
 
 /*jumbroton*/
 .custom-container {
-  background: linear-gradient(135deg, #ffcc00, #ff8838); /* Gradien latar belakang */
-  border-radius: 30px; /* Sudut membulat */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Bayangan */
+  background: linear-gradient(135deg, #ffcc00, #ff8838); 
+  border-radius: 30px; 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
   position: relative;
-  overflow: hidden; /* Menghindari elemen yang melampaui batas */
+  overflow: hidden; 
 }
 
 /*fitur-fitur*/
 .feature-card {
-  border: none; /* Menghilangkan border default */
-  border-radius: 20px; /* Sudut membulat */
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Bayangan */
-  transition: transform 0.3s, box-shadow 0.3s; /* Transisi halus */
+  border: none; 
+  border-radius: 20px; 
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.3s, box-shadow 0.3s; 
 }
 
 .card i {
-  display: block; /* Menempatkan ikon di atas teks */
-  margin-bottom: 15px; /* Jarak antara ikon dan teks */
+  display: block; 
+  margin-bottom: 15px; 
 }
 
 
 /*login page*/
 @media (max-width: 768px) {
   .form-signin {
-      margin-bottom: 30px; /* Menambahkan margin bawah pada form */
+      margin-bottom: 30px;
   }
 }
