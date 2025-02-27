@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-warning " style="border-bottom: 5px solid  #ff8838;">
     <div class="container-fluid">
-      <a class="navbar-brand text-white fw-bold" href="#">
+      <a class="navbar-brand text-white fw-bold" href="?page=home">
         <h1 class="mb-0"><i class="bi bi-robot text-white"></i><b>&nbsp; Robotors</b></h1>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"

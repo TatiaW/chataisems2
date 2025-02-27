@@ -6,7 +6,9 @@ function loadPage($page){
       include 'file_/home.php';
     }else if ($page === 'login'){
       include 'file_/login.php';
-    }else {
+    }else if ($page === 'register'){
+      include 'file_/register.php';
+    } else {
       include 'file_/404/error.php';
     }
 }
