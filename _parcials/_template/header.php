@@ -14,9 +14,17 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-warning " style="border-bottom: 5px solid  #ff8838;">
     <div class="container-fluid">
-      <a class="navbar-brand text-white fw-bold" href="?page=home">
-        <h1 class="mb-0"><i class="bi bi-robot text-white"></i><b>&nbsp; Robotors</b></h1>
-      </a>
+    <?php
+        if (isset($_SESSION['user_id'])) {
+          echo '<a class="navbar-brand text-white fw-bold" href="?page=welcome">';
+            echo '<h1 class="mb-0"><i class="bi bi-robot text-white"></i><b>&nbsp; Robotors</b></h1>';
+          echo '</a>';
+        } else {
+          echo '<a class="navbar-brand text-white fw-bold" href="?page=home">';
+            echo '<h1 class="mb-0"><i class="bi bi-robot text-white"></i><b>&nbsp; Robotors</b></h1>';
+          echo '</a>';
+        }
+      ?>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
         aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,7 +33,13 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarScroll">
         <ul class="navbar-nav me-3 my-2 my-lg-0 navbar-nav-scroll">
           <li class="nav-item">
-            <a class="nav-link text-white" href="?page=home" style="font-size: 20px;">Home</a>
+            <?php
+            if (isset($_SESSION['user_id'])) {
+              echo '<a class="nav-link text-white" href="?page=vidio" style="font-size: 20px;">Video</a>';
+            } else {
+              echo '<a class="nav-link text-white" href="?page=home" style="font-size: 20px;">Home</a>';
+            }
+            ?>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" style="font-size: 20px;">Pricing</a>
@@ -49,8 +63,18 @@
           </li>
         </ul>
 
-        <!-- Login Button -->
-        <a href="?page=login" class="btn btn-custom">Login Here <i class="bi bi-arrow-right"></i></a>
+        <?php
+        if (isset($_SESSION['user_id'])) {
+          echo '<a href="?logout=true" class="btn btn-custom">Logout <i class="bi bi-arrow-right"></i></a>';
+        } else {
+            echo '<a href="?page=login" class="btn btn-custom">Login Here <i class="bi bi-arrow-right"></i></a>';
+        }
+        if (isset($_GET['logout'])) {
+          session_destroy();
+        header("Location: index.php?page=home"); 
+          exit;
+      }
+        ?>
         </div>
     </div>
   </nav>
