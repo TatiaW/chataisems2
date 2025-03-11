@@ -1,5 +1,41 @@
-<?php include '_parcials/_template/header.php';
+<?php
+include '_parcials/_template/header.php';
+
 include 'koneksi.php'; 
+
+if (isset($_SESSION['success_message'])) {
+  echo '<div id="alertBox" class="alert alert-success " role="alert">
+          ' . $_SESSION['success_message'] . '
+        </div>';
+  unset($_SESSION['success_message']); 
+}
+//Query insert comment
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
+  if (isset($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
+    $comment = $_POST['comment'];
+    $is_approved = 1;
+    $create_at = date('Y-m-d H:i:s');
+        // Query untuk insert data
+        $query_insert = "INSERT INTO tb_comment (id_users,comment,is_approved,created_at) 
+                        VALUES (?, ?, ?, ?)";
+        $stmt_insert = $connect->prepare($query_insert);
+        $stmt_insert->bind_param("isis",$user_id,$comment,$is_approved,$create_at);
+  
+        if ($stmt_insert->execute()) {
+          $_SESSION['success_message'] = '<div id="alertBox" class=" alert-danger" role="alert">
+                        Komentarmu Telah Di Posting
+                    </div>';
+            header("Location: index.php?page=welcome"); 
+            // var_dump($_POST, $_SESSION, $user_id);
+            exit();
+        } else {
+            echo "<script>alert('gagal, Cak ulangi');</script>";
+        }
+  
+        $stmt_insert->close();
+    }
+}
 
 ?>
 <head>
@@ -70,31 +106,19 @@ include 'koneksi.php';
               <i class="bi bi-cloud-arrow-down text-warning fs-1"></i>
               <h5 class="mt-3"><b>Cloud Options</b></h5>
               <p>Starvee engine offers Cloud Options to collect the dataset once you submit, and it will be reusable in all your projects.</p>
+              <form method="post">
+                <input type="text" name="comment" class="form-control mb-2" placeholder="Masukkan komentar anda" required>
+                <button name="submit_comment" class="btn w-100 btn-gold" type="submit">Kirim</button>
+              </form>
           </div>
       </div>
   </div>
 </div>
 
 
-  <div class="container bg-dark mt-5">
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 bg-info">
-      <div class="col">
-        <div class=" card  bg-primary">halo</div>
-      </div>
-      <div class="col"> 
-        <div class=" card  bg-danger">halo</div>
-      </div>
-      <div class="col">
-        <div class=" card  bg-dark">halo</div>
-      </div>
-      <div class="col">
-        <div class=" card  bg-warning">halo</div>
-      </div>
-    </div>
-  </div>
   
-   <!-- Footer -->
-   <footer class=" text-white mt-5 py-4" style="background-color: #c4876a;">
+  <!-- Footer -->
+  <footer class=" text-white mt-5 py-4" style="background-color: #c4876a;">
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -125,7 +149,16 @@ include 'koneksi.php';
       </div>
     </div>
   </footer>
-
- 
+  <script>
+    // Menghapus alert setelah 10 detik
+    setTimeout(function() {
+        var alertBox = document.getElementById("alertBox");
+        if (alertBox) {
+            alertBox.style.transition = "opacity 1s";
+            alertBox.style.opacity = "0";
+            setTimeout(function() { alertBox.remove(); }, 1000); 
+        }
+    }, 10000);
+</script>
 </body>
 </html>

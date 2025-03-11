@@ -17,15 +17,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         if (password_verify($password, $row['password'])) {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['email'] = $row['email'];
+            $_SESSION['success_message'] = "Login Berhasil!  ";
 
             header("Location: index.php?page=welcome"); 
-            echo "<script>alert('Login berhasil! Selamat datang');</script>";
             exit();
         } else {
-            echo "<script>alert('Password salah!');</script>";
+            echo '<div id="alertBox" class="alert alert-danger" role="alert">
+            Email & Password Anda Salah!!!
+            </div> ';
+
         }
     } else {
-        echo "<script>alert('Email tidak ditemukan!');</script>";
+        echo '<div id="alertBox" class="alert alert-danger" role="alert">
+            Email & Password Anda Salah!!!
+            </div> ';
     }
 
     $stmt->close();
@@ -73,4 +78,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             </div>
         </div>
     </div>
-  
+
+    <script>
+    // Menghapus alert setelah 10 detik
+    setTimeout(function() {
+        var alertBox = document.getElementById("alertBox");
+        if (alertBox) {
+            alertBox.style.transition = "opacity 1s";
+            alertBox.style.opacity = "0";
+            setTimeout(function() { alertBox.remove(); }, 1000); 
+        }
+    }, 10000);
+</script>

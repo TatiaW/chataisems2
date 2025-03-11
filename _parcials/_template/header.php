@@ -1,3 +1,7 @@
+<?php
+include 'koneksi.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,46 +39,60 @@
           <li class="nav-item">
             <?php
             if (isset($_SESSION['user_id'])) {
-              echo '<a class="nav-link text-white" href="?page=vidio" style="font-size: 20px;">Video</a>';
-            } else {
+              $user_id = $_SESSION['user_id'];
+              
+              // Ambil role user dari database
+              $query = "SELECT role.role FROM tb_users JOIN role ON tb_users.role_id = role.id WHERE tb_users.id = ?";
+              $stmt = $connect->prepare($query);
+              $stmt->bind_param("i", $user_id);
+              $stmt->execute();
+              $result = $stmt->get_result();
+              $row = $result->fetch_assoc();
+              $role = $row['role'] ?? 'user'; // Default ke user jika tidak ditemukan
+              
+              if ($role === 'admin') {
+                  echo '<a class="nav-link text-white" href="?page=vidio" style="font-size: 20px;">Video</a>';
+              } else {
+                  echo '<a class="nav-link text-white" href="?page=welcome" style="font-size: 20px;">Home</a>';
+              }
+          } else {
               echo '<a class="nav-link text-white" href="?page=home" style="font-size: 20px;">Home</a>';
-            }
+          }
             ?>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" style="font-size: 20px;">Pricing</a>
+            <a class="nav-link text-white" style="font-size: 20px;">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" style="font-size: 20px;">AI Products offer</a>
+            <a class="nav-link text-white" style="font-size: 20px;">About Us</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
+          <?php
+            if (isset($_SESSION['user_id'])){
+          echo '<li class="nav-item dropdown">';
+            echo '<a class="nav-link dropdown-toggle text-white btn btn-custom" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false" style="font-size: 20px;">
-              Documentation
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">API Integrations</a></li>
-              <li><a class="dropdown-item" href="#">Embedded AI Chatbots</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Cloud Datasets</a></li>
-            </ul>
+              Profile';
+            echo '</a>';
+              echo '<ul class="dropdown-menu">';
+              echo '<li><a class="dropdown-item" href="#">Account</i></a></li>';
+              echo '<li>';
+                echo '<hr class="dropdown-divider">'; 
+              echo '</li>';
+              echo '<li><a class="dropdown-item" href="?logout=true">Logout</a></li>';
+            echo '</ul>';
+            }else{
+            echo '<a href="?page=login" class="btn btn-custom">Login Here <i class="bi bi-arrow-right"></i></a>';
+            }
+
+            if (isset($_GET['logout'])){
+              session_destroy();
+              header("Location: index.php?page=home"); 
+              exit;
+            }
+            ?>
+
           </li>
         </ul>
-
-        <?php
-        if (isset($_SESSION['user_id'])) {
-          echo '<a href="?logout=true" class="btn btn-custom">Logout <i class="bi bi-arrow-right"></i></a>';
-        } else {
-            echo '<a href="?page=login" class="btn btn-custom">Login Here <i class="bi bi-arrow-right"></i></a>';
-        }
-        if (isset($_GET['logout'])) {
-          session_destroy();
-        header("Location: index.php?page=home"); 
-          exit;
-      }
-        ?>
         </div>
     </div>
   </nav>
