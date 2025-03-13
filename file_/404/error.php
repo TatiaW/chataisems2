@@ -1,4 +1,7 @@
-<?php include '././_parcials/_template/header.php';?>
+
+
+<head>
+  <link rel="stylesheet" href="./css/style.css">
 
 <style>
 
@@ -36,6 +39,7 @@
     display: inline-block;}
 	.contant_box_404{ margin-top:-50px;}
   </style>
+   </head>
   <center>
 <section class="page_404">
 	<div class="container">
@@ -62,3 +66,4 @@
 		</div>
 	</div>
 </section></center>
+			

@@ -1,6 +1,6 @@
 
 <head>
-  <link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     
@@ -8,7 +8,7 @@
   <div class="container mt-4">
     <div class="custom-container p-5 text-dark d-flex align-items-center position-relative">
         <div>
-            <h1 style="font-size: 60px;"><b>Robotors AI</b></h1>
+            <h1 style="font-size: 60px;"><b>About Us</b></h1>
             <p class="text-muted">Gunakan Futuristik AI chatbot di lokal server kamu,<br />Layanan Chat bot virtual yang
                 bisa kamu gunain untuk bisnis sehari-hari bisa integrasi langsung di aplikasi kamu</p>
         </div>
@@ -60,6 +60,22 @@
 </div>
 
 
+  <div class="container bg-dark mt-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 bg-info">
+      <div class="col">
+        <div class=" card  bg-primary">halo</div>
+      </div>
+      <div class="col"> 
+        <div class=" card  bg-danger">halo</div>
+      </div>
+      <div class="col">
+        <div class=" card  bg-dark">halo</div>
+      </div>
+      <div class="col">
+        <div class=" card  bg-warning">halo</div>
+      </div>
+    </div>
+  </div>
   
   
   <?php include '_parcials/_template/footer.php';?>

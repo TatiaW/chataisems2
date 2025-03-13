@@ -28,15 +28,12 @@
             <a class="nav-link text-white" href="?page=home" style="font-size: 20px;">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" style="font-size: 20px;">Pricing</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" style="font-size: 20px;">AI Products offer</a>
+            <a class="nav-link text-white" href="?page=about" style="font-size: 20px;">About Us</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false" style="font-size: 20px;">
-              Documentation
+              Menu
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">API Integrations</a></li>
@@ -54,8 +51,12 @@
         </div>
     </div>
   </nav>
+
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+
+
 </body>
 </html>
