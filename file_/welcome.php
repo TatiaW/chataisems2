@@ -1,7 +1,6 @@
 <?php
 include '_parcials/_template/header.php';
-
-include 'koneksi.php'; 
+include_once './controllers/AuthController.php';
 
 if (isset($_SESSION['success_message'])) {
   echo '<div id="alertBox" class="alert alert-success " role="alert">
@@ -9,14 +8,14 @@ if (isset($_SESSION['success_message'])) {
         </div>';
   unset($_SESSION['success_message']); 
 }
-//Query insert comment
+//upload komentar komen
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
   if (isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
     $comment = $_POST['comment'];
     $is_approved = 1;
     $create_at = date('Y-m-d H:i:s');
-        // Query untuk insert data
+        // Memasukkan data
         $query_insert = "INSERT INTO tb_comment (id_users,comment,is_approved,created_at) 
                         VALUES (?, ?, ?, ?)";
         $stmt_insert = $connect->prepare($query_insert);
@@ -36,31 +35,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
         $stmt_insert->close();
     }
 }
+$AuthController = new AuthController($connect);
+// $adminController->checkAdminAccess();
+
+$userData = $AuthController->getUserData();
+// $profile_image = $userData['image'];
+// $show_upload_modal = empty($profile_image);
 
 ?>
-<head>
-  <link rel="stylesheet" href="./css/style.css">
-</head>
+
 <body>
     
 <!-- Jumbroton -->
   <div class="container mt-4">
     <div class="custom-container p-5 text-dark d-flex align-items-center position-relative">
         <div>
-            <?php
-            if (isset($_SESSION['user_id'])){
-                $user_id = $_SESSION['user_id'];
-                $query = "SELECT fullname FROM tb_users WHERE id = '$user_id'";
-                $result = $connect->query($query);
+            <h1 style="font-size: 60px;"><b>Welcome <?php echo $userData['prefix']. " " .htmlspecialchars($userData['fullname']); ?></b></h1>
 
-                if ($result->num_rows == 1) {
-                    $row = $result->fetch_assoc();
-                    $fullname = $row['fullname'];
-                    echo '<h1 style="font-size: 60px;">Selamat datang, ' . $fullname . '!</h1>';
-                }
-            }
-            // <h1 style="font-size: 60px;"><b>Welcome To Robotors AI</b></h1>
-            ?>
             <p class="text-muted">Gunakan Futuristik AI chatbot di lokal server kamu,<br />Layanan Chat bot virtual yang
                 bisa kamu gunain untuk bisnis sehari-hari bisa integrasi langsung di aplikasi kamu</p>
         </div>
@@ -118,7 +109,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
 
   
   <!-- Footer -->
-  <footer class=" text-white mt-5 py-4" style="background-color: #c4876a;">
+    <?php
+    include '_parcials/_template/footer.php';
+    ?>
+  <!-- <footer class=" text-white mt-5 py-4" style="background-color: #c4876a;">
     <div class="container">
       <div class="row">
         <div class="col-md-4">
@@ -148,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit_comment'])) {
         <p>&copy; 2025 Robotors AI. All rights reserved.</p>
       </div>
     </div>
-  </footer>
+  </footer> -->
   <script>
     // Menghapus alert setelah 10 detik
     setTimeout(function() {

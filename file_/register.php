@@ -55,49 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                 <h1 class="text-center">Robotors</h1>
             </div>
 
-            <div class="col-lg-4 d-flex align-items-center justify-content-center">
-                <!-- <main class="form-signin w-75" >
-                    <form >
-                        <h1 class="h3 mb-3 fw-normal text-center">Register</h1>
-                        <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
-                            <label for="floatingInput">Email</label>
-                        </div>
-                        <div class="form-floating mt-2">
-                            <input type="text" class="form-control" id="floatingInput" name="fullname" placeholder="name@example.com">
-                            <label for="floatingInput">Username</label>
-                        </div>
-                        <div class="mt-2">
-                            <label class="form-label">Jenis Kelamin</label>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="maleCheckbox" name="jenis_kelamin" value="L">
-                                <label class="form-check-label" for="maleCheckbox">Laki-laki</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="femaleCheckbox" name="jenis_kelamin" value="P">
-                                <label class="form-check-label" for="femaleCheckbox">Perempuan</label>
-                            </div>
-                        </div>
-                        <div class="form-floating mt-2">
-                            <input type="number" class="form-control" id="floatingInput" name="No_Handphone" placeholder="name@example.com">
-                            <label for="floatingInput">No Heandphone</label>
-                        </div>
-                        <div class="form-floating mt-2">
-                            <input type="text" class="form-control" id="floatingInput" name="alamat" placeholder="name@example.com">
-                            <label for="floatingInput">Alamat</label>
-                        </div>
-                        <div class="form-floating mt-2">
-                            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
-                        </div>
-    
-                        <button class="btn btn-primary w-100 py-2 mt-3" type="submit">Register</button>
-                        
-                        <div class="text-center mt-3">
-                            Sudah memiliki akun? <a href="?page=login">Login</a> 
-                        </div>
-                    </form>
-                </main> -->
+            <div class="col-lg-4 d-flex shadow-lg rounded-4 align-items-center p-4 mx-auto" style="border: 1px solid #ff8838;">
                 <main class="form-signin w-75">
                     <form method="POST">
                         <h1 class="h3 mb-3 fw-normal text-center">Register</h1>
@@ -115,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
                         <div class="mt-2">
                             <div class="form-floating">
                                 <select class="form-select" id="jenisKelamin" name="jenis_kelamin" required>
-                                    <option selected disabled>Pilih Jenis Kelamin</option>
+                                    <option selected disabled value="">Pilih Jenis Kelamin</option>
                                     <option value="L">Laki-laki</option>
                                     <option value="P">Perempuan</option>
                                 </select>
@@ -148,3 +106,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
             </div>
         </div>
     </div>
+
+
+    

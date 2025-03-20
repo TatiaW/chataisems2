@@ -1,52 +1,26 @@
-<?php include '_parcials/_template/header.php';
-include 'koneksi.php'; 
+<?php 
+include '_parcials/_template/header.php';
+include_once './controllers/AuthController.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+$auth = new AuthController($connect);
+$error = null;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
-
-    $query = "SELECT id, email, password FROM tb_users WHERE email = ?";
-    $stmt = $connect->prepare($query);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-
-        if (password_verify($password, $row['password'])) {
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['email'] = $row['email'];
-            $_SESSION['success_message'] = "Login Berhasil!  ";
-
-            header("Location: index.php?page=welcome"); 
-            exit();
-        } else {
-            echo '<div id="alertBox" class="alert alert-danger" role="alert">
-            Email & Password Anda Salah!!!
-            </div> ';
-
-        }
-    } else {
-        echo '<div id="alertBox" class="alert alert-danger" role="alert">
-            Email & Password Anda Salah!!!
-            </div> ';
-    }
-
-    $stmt->close();
-    $connect->close();
+    $error = $auth->login($email, $password);
 }
-
 ?>
 <head>
-  <link rel="stylesheet" href="././css/style.css">
+    <link rel="stylesheet" href="././css/style.css">
 </head>
 <body style="background-color: beige;" >
-     
 
-  <!--Login-->
-    <div class="container-fluid vh-90 " style="margin-top: 5rem;">
-        <div class="row h-100" >
+
+<!--Login-->
+<main class="container">
+    <div class="container-fluid vh-90 " style="margin-top: 5rem; ">
+        <div class="row h-100 justify-content-center" >
             <!-- Kolom Kiri: Logo -->
             <div class="col-lg-6 d-flex flex-column align-items-center justify-content-center bg-transparent">
                 <img src="./img/chatbot.png" alt="Logo" class="img-fluid" style="max-width: 30%; margin-bottom: 20px;">
@@ -54,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             </div>
     
             <!-- Kolom Kanan: Form Login/Register -->
-            <div class="col-lg-4 d-flex align-items-center justify-content-center">
+            <div class="col-lg-4 d-flex shadow-lg rounded-4 align-items-center justify-content-center p-4 mx-auto" style="border: 1px solid #ff8838;">
                 <main class="form-signin w-75" >
                     <form method="POST" action="?page=login" >
                         <h1 class="h3 mb-3 fw-normal text-center">Login</h1>
@@ -78,6 +52,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             </div>
         </div>
     </div>
+</main>
+
+
 
     <script>
     // Menghapus alert setelah 10 detik
