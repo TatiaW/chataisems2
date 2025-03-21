@@ -1,5 +1,5 @@
 <?php 
-include "koneksi.php";
+include 'config/db.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
     $email = $_POST['email'];

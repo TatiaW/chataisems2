@@ -30,24 +30,24 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="?page=about" style="font-size: 20px;">About Us</a>
           </li>
+          <?php if (isset($_SESSION['user_id'])) : ?>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown"
               aria-expanded="false" style="font-size: 20px;">
-              Menu
+              Hi! @<?= ucwords($_SESSION['fullname'])?></a>
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">API Integrations</a></li>
-              <li><a class="dropdown-item" href="#">Embedded AI Chatbots</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Cloud Datasets</a></li>
+            <ul class="btn dropdown-menu">
+              <li><a class="dropdown-item" href="?page=logout">Logout</a></li>
+              <li><a class="dropdown-item" href="?page=profil">Profil</a></li>
             </ul>
           </li>
         </ul>
-
+        
         <!-- Login Button -->
-        <a href="?page=login" class="btn btn-custom">Login Here <i class="bi bi-arrow-right"></i></a>
+
+        <?php else : ?>
+          <a href="?page=login" class="btn btn-custom">Login Here <i class="bi bi-arrow-right"></i></a>
+                    <?php endif; ?>
         </div>
     </div>
   </nav>
