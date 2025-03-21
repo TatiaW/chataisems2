@@ -91,9 +91,10 @@ if (!class_exists('ProfilController')) {
                 $email = trim($_POST['email']);
                 $phone = trim($_POST['no_telp']);
                 $address = trim($_POST['alamat']);
+                $jenis = trim($_POST['jenis_kelamin']);
 
-                $stmt = $this->connect->prepare("UPDATE tb_users SET fullname = ?, email = ?, no_telp = ?, alamat = ? WHERE id = ?");
-                $stmt->bind_param("ssssi", $name, $email, $phone, $address, $user_id);
+                $stmt = $this->connect->prepare("UPDATE tb_users SET fullname = ?, email = ?, jenis_kelamin = ?, no_telp = ?, alamat = ? WHERE id = ?");
+                $stmt->bind_param("ssssss", $name, $email, $jenis, $phone, $address, $user_id, );
 
                 if ($stmt->execute()) {
                     $_SESSION['success'] = "Profil berhasil diperbarui!";

@@ -157,6 +157,15 @@ $upload_error = $uploadResult['upload_error'];
                         <label for="alamat" class="form-label">Alamat</label>
                         <textarea class="form-control" id="alamat" name="alamat" rows="2" required><?php echo htmlspecialchars($alamat); ?></textarea>
                     </div>
+
+                    <div class="mb-3">
+                        <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                        <select class="form-control" id="jenis_kelamin" name="jenis_kelamin" required>
+                            <option value="L" <?php echo ($jenis == "L") ? "selected" : ""; ?>>Laki-laki</option>
+                            <option value="P" <?php echo ($jenis == "P") ? "selected" : ""; ?>>Perempuan</option>
+                        </select>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
