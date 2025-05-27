@@ -23,6 +23,7 @@ if (!class_exists('AuthController')) {
                     $_SESSION['email'] = $user['email'];
                     $_SESSION['role_id'] = $user['role_id'];
                     if ($user['role_id'] == 1) {
+                        
                         header("Location: index.php?page=admin_dashboard");
                     } else {
                         header("Location: index.php?page=home");

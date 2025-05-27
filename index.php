@@ -16,8 +16,10 @@ function loadPage($page){
       include 'file_/about.php';
     }else if ($page === 'admin_dashboard' && isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
       include 'file_/admin_dashboard.php'; // Buat file ini
+  }else if ($page === 'manage_users' && isset($_SESSION['role_id']) && $_SESSION['role_id'] == 1) {
+      include 'file_/manage_users.php'; // Buat file ini
   } else {
-      include 'file_/404/error.php';
+      include 'file_/404/error.php';  
     }
 }
   

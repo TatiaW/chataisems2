@@ -10,9 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $error = $auth->login($email, $password);
 }
-
-  
-
 ?>
 
 <head>
