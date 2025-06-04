@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['register'])) {
 
     if ($stmt_check->num_rows > 0) {
         echo "<script>alert('Maaf, email sudah terdaftar');</script>";
-        echo '<meta http-equiv="refresh" content="1; url=?page=register">';
+        echo '<meta http-equiv="refresh" content="1;  >';
         exit();
     }
     $stmt_check->close();

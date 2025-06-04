@@ -68,7 +68,7 @@ $stmt->close();
                         <p>Tekan tombol untuk memulai chat dengan ROBOTORS!</p>
                        <div class="mt-4">
                             <div class="d-flex flex-wrap gap-3">
-                            <a href="?page=manage_users" class="btn btn-outline-primary bi bi-chat-left-dots ms-2">
+                            <a href="file_/chatbot.php" class="btn btn-outline-primary bi bi-chat-left-dots ms-2">
                                 New Chat 
                             </a>
                             </div>
